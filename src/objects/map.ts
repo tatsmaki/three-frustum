@@ -1,4 +1,4 @@
-import { Group } from "three";
+import { GridHelper, Group } from "three";
 import { createChunk } from "./chunk";
 
 export const map = new Group();
@@ -12,3 +12,5 @@ for (let i = 0; i < 10 * 10; i++) {
 
   map.add(chunk);
 }
+
+export const gridHelper = new GridHelper(100, 10);

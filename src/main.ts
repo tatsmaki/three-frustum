@@ -7,10 +7,10 @@ import {
   fakeCameraHelper,
   renderFakeCamera,
 } from "./objects/fake_camera";
-import { map } from "./objects/map";
+import { gridHelper, map } from "./objects/map";
 import "./style.css";
 
-scene.add(camera, map, ambientLight, fakeCamera, fakeCameraHelper);
+scene.add(camera, map, gridHelper, ambientLight, fakeCamera, fakeCameraHelper);
 
 renderer.setAnimationLoop(() => {
   renderFakeCamera();
