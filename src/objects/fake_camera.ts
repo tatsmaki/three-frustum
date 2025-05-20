@@ -1,15 +1,15 @@
 import {
   CameraHelper,
   Euler,
-  Frustum,
-  Matrix4,
+  // Frustum,
+  // Matrix4,
   PerspectiveCamera,
 } from "three";
 import { pointerController } from "../controls/pointer";
 import { keyboardController } from "../controls/keyboard";
 
 const height = 1;
-const m4 = new Matrix4();
+// const m4 = new Matrix4();
 
 export const fakeCamera = new PerspectiveCamera(
   75,
