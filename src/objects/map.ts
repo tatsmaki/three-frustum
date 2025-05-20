@@ -5,12 +5,17 @@ export const map = new Group();
 
 map.rotateX(-Math.PI / 2);
 
-for (let i = 0; i < 10 * 10; i++) {
-  const chunk = createChunk();
+for (let x = -2; x < 2; x++) {
+  for (let y = -2; y < 2; y++) {
+    const chunk = createChunk();
 
-  chunk.position.set(i * 10, 0, 0);
+    const dx = x * 10;
+    const dy = y * 10;
 
-  map.add(chunk);
+    chunk.position.set(dx + 5, dy + 5, 0);
+
+    map.add(chunk);
+  }
 }
 
 export const gridHelper = new GridHelper(100, 10);

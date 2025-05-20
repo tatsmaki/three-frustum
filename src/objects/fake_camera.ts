@@ -1,8 +1,15 @@
-import { CameraHelper, Euler, PerspectiveCamera } from "three";
+import {
+  CameraHelper,
+  Euler,
+  Frustum,
+  Matrix4,
+  PerspectiveCamera,
+} from "three";
 import { pointerController } from "../controls/pointer";
 import { keyboardController } from "../controls/keyboard";
 
 const height = 1;
+const m4 = new Matrix4();
 
 export const fakeCamera = new PerspectiveCamera(
   75,
@@ -26,4 +33,10 @@ export const renderFakeCamera = () => {
   euler.x = 0;
   direction.applyEuler(euler);
   fakeCamera.position.addScaledVector(direction, 0.1);
+
+  // const frustum = new Frustum().setFromProjectionMatrix(
+  //   m4.copy(fakeCamera.projectionMatrix).multiply(fakeCamera.matrixWorldInverse)
+  // );
+
+  // console.log(frustum);
 };
