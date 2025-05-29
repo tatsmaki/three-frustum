@@ -8,9 +8,11 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "lodash.throttle": "^4.1.1",
     "three": "^0.176.0"
   },
   "devDependencies": {
+    "@types/lodash.throttle": "^4.1.9",
     "@types/three": "^0.176.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"

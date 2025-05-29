@@ -61,8 +61,9 @@ export class KeyboardController {
 
   get direction() {
     const x = Number(this.d) - Number(this.a);
-    const z = Number(this.s) - Number(this.w);
-    return new Vector3(x, 0, z);
+    const y = Number(this.w) - Number(this.s);
+
+    return new Vector3(x, y, 0);
   }
 }
 

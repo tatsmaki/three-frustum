@@ -7,13 +7,14 @@ import {
   fakeCameraHelper,
   renderFakeCamera,
 } from "./objects/fake_camera";
-import { gridHelper, map } from "./objects/map";
+import { gridHelper, map, renderMap } from "./objects/map";
 import "./style.css";
 
 scene.add(camera, map, gridHelper, ambientLight, fakeCamera, fakeCameraHelper);
 
 renderer.setAnimationLoop(() => {
   renderFakeCamera();
+  renderMap();
   renderer.render(scene, camera);
 });
 

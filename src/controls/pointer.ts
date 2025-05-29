@@ -15,8 +15,9 @@ class PointerController {
         const { movementX, movementY } = event;
 
         this.euler.setFromQuaternion(fakeCamera.quaternion);
-        this.euler.y -= movementX * 0.004;
         this.euler.x -= movementY * 0.004;
+        this.euler.y -= movementX * 0.004;
+
         this.euler.x = Math.max(
           -Math.PI / 2,
           Math.min(Math.PI / 2, this.euler.x)
