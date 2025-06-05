@@ -2,15 +2,11 @@ import { ambientLight } from "./global/ambient_light";
 import { camera } from "./global/camera";
 import { renderer } from "./global/renderer";
 import { scene } from "./global/scene";
-import {
-  fakeCamera,
-  fakeCameraHelper,
-  renderFakeCamera,
-} from "./objects/fake_camera";
+import { fakeCameraGroup, renderFakeCamera } from "./objects/fake_camera";
 import { gridHelper, map, renderMap } from "./objects/map";
 import "./style.css";
 
-scene.add(camera, map, gridHelper, ambientLight, fakeCamera, fakeCameraHelper);
+scene.add(camera, map, gridHelper, ambientLight, fakeCameraGroup);
 
 renderer.setAnimationLoop(() => {
   renderFakeCamera();

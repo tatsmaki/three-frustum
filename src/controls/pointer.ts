@@ -1,8 +1,7 @@
-import { Euler } from "three";
-import { fakeCamera } from "../objects/fake_camera";
+import { Vector2 } from "three";
 
-class PointerController {
-  euler = new Euler(0, 0, 0, "YXZ");
+class PointerControl {
+  pointer = new Vector2();
   isActive = false;
 
   constructor() {
@@ -12,16 +11,12 @@ class PointerController {
 
     document.onpointermove = (event) => {
       if (this.isActive) {
-        const { movementX, movementY } = event;
+        const { screenX, screenY } = event;
 
-        this.euler.setFromQuaternion(fakeCamera.quaternion);
-        this.euler.x -= movementY * 0.004;
-        this.euler.y -= movementX * 0.004;
+        const x = (screenX / window.innerWidth) * 2 - 1;
+        const y = (screenY / window.innerHeight) * -2 + 1;
 
-        this.euler.x = Math.max(
-          -Math.PI / 2,
-          Math.min(Math.PI / 2, this.euler.x)
-        );
+        this.pointer.set(x, y);
       }
     };
 
@@ -31,4 +26,4 @@ class PointerController {
   }
 }
 
-export const pointerController = new PointerController();
+export const pointerControl = new PointerControl();
