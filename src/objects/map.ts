@@ -2,17 +2,15 @@ import { GridHelper, Group, Vector3 } from "three";
 import { createChunk } from "./chunk";
 import { fakeCamera } from "./fake_camera";
 import throttle from "lodash.throttle";
+import { mapTiles, tileSize } from "./map_config";
 
 export const map = new Group();
-
-const mapTiles = 2;
-const mapTileSize = 10;
 
 for (let x = -mapTiles; x <= mapTiles; x += 1) {
   for (let y = -mapTiles; y <= mapTiles; y += 1) {
     const chunk = createChunk(x, y);
-    const dx = x * mapTileSize;
-    const dy = y * mapTileSize;
+    const dx = x * tileSize;
+    const dy = y * tileSize;
 
     chunk.position.set(dx, dy, 0);
 
@@ -20,7 +18,7 @@ for (let x = -mapTiles; x <= mapTiles; x += 1) {
   }
 }
 
-export const gridHelper = new GridHelper(mapTileSize * 10, 10);
+export const gridHelper = new GridHelper(tileSize * 10, 10);
 
 gridHelper.rotateX(-Math.PI / 2);
 
@@ -29,8 +27,8 @@ let prevPos = new Vector3();
 export const renderMap = throttle(() => {
   const playerPos = fakeCamera.position.clone();
 
-  playerPos.x = Math.round(playerPos.x / mapTileSize);
-  playerPos.y = Math.round(playerPos.y / mapTileSize);
+  playerPos.x = Math.round(playerPos.x / tileSize);
+  playerPos.y = Math.round(playerPos.y / tileSize);
   playerPos.z = 0;
 
   const diff = playerPos.clone().sub(prevPos);
@@ -50,7 +48,7 @@ export const renderMap = throttle(() => {
 
         const newChunk = createChunk(newPos.x, newPos.y);
 
-        newPos.multiplyScalar(mapTileSize);
+        newPos.multiplyScalar(tileSize);
         newChunk.position.copy(newPos);
         map.remove(chunk);
         map.add(newChunk);
@@ -63,7 +61,7 @@ export const renderMap = throttle(() => {
 
         const newChunk = createChunk(newPos.x, newPos.y);
 
-        newPos.multiplyScalar(mapTileSize);
+        newPos.multiplyScalar(tileSize);
         newChunk.position.copy(newPos);
         map.remove(chunk);
         map.add(newChunk);
