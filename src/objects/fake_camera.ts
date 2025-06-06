@@ -38,7 +38,7 @@ export const renderFakeCamera = () => {
 
   const direction = keyboardController.direction.normalize();
 
-  fakeCamera.position.addScaledVector(direction, 0.1);
+  fakeCamera.position.addScaledVector(direction, 0.2);
 
   matrix.copy(fakeCamera.projectionMatrix);
   matrix.multiply(fakeCamera.matrixWorldInverse);

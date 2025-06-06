@@ -3,6 +3,7 @@ import {
   Mesh,
   MeshStandardMaterial,
   PlaneGeometry,
+  Vector3,
 } from "three";
 
 const createTexture = (x: number, y: number) => {
@@ -31,8 +32,9 @@ export const createChunk = (x: number, y: number) => {
     transparent: true,
   });
   const plane = new Mesh(planeGeo, planeMat);
+  const tilePos = new Vector3(x, y, 0);
 
-  plane.userData.chunk = { x, y };
+  plane.userData = { tilePos };
   plane.material.lightMap = createTexture(x, y);
   plane.material.needsUpdate = true;
 

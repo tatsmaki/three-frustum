@@ -35,12 +35,40 @@ export const renderMap = throttle(() => {
 
   const diff = playerPos.clone().sub(prevPos);
 
-  diff.multiplyScalar(mapTileSize);
-
   if (diff.length() > 0) {
-    map.children.forEach((chunk) => {
-      chunk.position.add(diff);
-    });
+    for (let i = map.children.length - 1; i >= 0; i -= 1) {
+      const chunk = map.children[i];
+      const tilePos = chunk.userData.tilePos;
+
+      const dx = playerPos.x - tilePos.x;
+      const dy = playerPos.y - tilePos.y;
+
+      if (Math.abs(dy) > mapTiles) {
+        const newPos = tilePos.clone();
+
+        newPos.y += (mapTiles * 2 + 1) * Math.sign(dy);
+
+        const newChunk = createChunk(newPos.x, newPos.y);
+
+        newPos.multiplyScalar(mapTileSize);
+        newChunk.position.copy(newPos);
+        map.remove(chunk);
+        map.add(newChunk);
+      }
+
+      if (Math.abs(dx) > mapTiles) {
+        const newPos = tilePos.clone();
+
+        newPos.x += (mapTiles * 2 + 1) * Math.sign(dx);
+
+        const newChunk = createChunk(newPos.x, newPos.y);
+
+        newPos.multiplyScalar(mapTileSize);
+        newChunk.position.copy(newPos);
+        map.remove(chunk);
+        map.add(newChunk);
+      }
+    }
 
     prevPos.copy(playerPos);
   }
