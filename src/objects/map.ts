@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 
 export const map = new Group();
 
-const mapTiles = 2;
+const mapTiles = 3;
 const mapTileSize = 10;
 const chunkOffset = new Vector3(mapTileSize / 2, mapTileSize / 2, 0);
 
