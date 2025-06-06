@@ -15,7 +15,6 @@ for (let x = -mapTiles; x <= mapTiles; x += 1) {
     const dy = y * mapTileSize;
 
     chunk.position.set(dx, dy, 0);
-    chunk.userData.chunk = { x, y };
 
     map.add(chunk);
   }
