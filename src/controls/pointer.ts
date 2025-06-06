@@ -23,6 +23,10 @@ class PointerControl {
     document.onpointerup = () => {
       this.isActive = false;
     };
+
+    document.oncontextmenu = () => {
+      this.isActive = false;
+    };
   }
 }
 
