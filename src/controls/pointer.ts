@@ -1,7 +1,7 @@
-import { Vector2 } from "three";
+import { Vector3 } from "three";
 
 class PointerControl {
-  pointer = new Vector2();
+  pointer = new Vector3();
   isActive = false;
 
   constructor() {
@@ -11,12 +11,12 @@ class PointerControl {
 
     document.onpointermove = (event) => {
       if (this.isActive) {
-        const { screenX, screenY } = event;
+        const { clientX, clientY } = event;
 
-        const x = (screenX / window.innerWidth) * 2 - 1;
-        const y = (screenY / window.innerHeight) * -2 + 1;
+        const x = (clientX / window.innerWidth) * 2 - 1;
+        const y = (clientY / window.innerHeight) * -2 + 1;
 
-        this.pointer.set(x, y);
+        this.pointer.set(x, y, 0);
       }
     };
 
