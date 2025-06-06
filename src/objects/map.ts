@@ -5,19 +5,17 @@ import throttle from "lodash.throttle";
 
 export const map = new Group();
 
-const mapTiles = 3;
+const mapTiles = 2;
 const mapTileSize = 10;
-const chunkOffset = new Vector3(mapTileSize / 2, mapTileSize / 2, 0);
 
-map.position.copy(chunkOffset);
-
-for (let x = -mapTiles; x < mapTiles; x += 1) {
-  for (let y = -mapTiles; y < mapTiles; y += 1) {
-    const chunk = createChunk();
+for (let x = -mapTiles; x <= mapTiles; x += 1) {
+  for (let y = -mapTiles; y <= mapTiles; y += 1) {
+    const chunk = createChunk(x, y);
     const dx = x * mapTileSize;
     const dy = y * mapTileSize;
 
     chunk.position.set(dx, dy, 0);
+    chunk.userData.chunk = { x, y };
 
     map.add(chunk);
   }
@@ -32,8 +30,8 @@ let prevPos = new Vector3();
 export const renderMap = throttle(() => {
   const playerPos = fakeCamera.position.clone();
 
-  playerPos.x = Math.floor(playerPos.x / mapTileSize);
-  playerPos.y = Math.floor(playerPos.y / mapTileSize);
+  playerPos.x = Math.round(playerPos.x / mapTileSize);
+  playerPos.y = Math.round(playerPos.y / mapTileSize);
   playerPos.z = 0;
 
   const diff = playerPos.clone().sub(prevPos);
