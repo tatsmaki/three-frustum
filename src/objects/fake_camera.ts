@@ -9,6 +9,7 @@ import { pointerControl } from "../controls/pointer";
 import { keyboardController } from "../controls/keyboard";
 import { map } from "./map";
 import type { Chunk } from "./chunk";
+import { camera, cameraOffset } from "../global/camera";
 
 const fov = 50;
 const aspect = window.innerWidth / window.innerHeight;
@@ -39,6 +40,7 @@ export const renderFakeCamera = () => {
   const direction = keyboardController.direction.normalize();
 
   fakeCamera.position.addScaledVector(direction, 0.2);
+  camera.position.copy(fakeCamera.position).add(cameraOffset);
 
   matrix.copy(fakeCamera.projectionMatrix);
   matrix.multiply(fakeCamera.matrixWorldInverse);

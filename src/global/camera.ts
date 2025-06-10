@@ -1,4 +1,4 @@
-import { PerspectiveCamera } from "three";
+import { PerspectiveCamera, Vector3 } from "three";
 
 const fov = 75;
 const aspect = window.innerWidth / window.innerHeight;
@@ -7,5 +7,7 @@ const far = 100;
 
 export const camera = new PerspectiveCamera(fov, aspect, near, far);
 
-camera.position.set(0, -30, 30);
-camera.lookAt(0, 0, 0);
+export const cameraOffset = new Vector3(0, -30, 30);
+
+camera.position.copy(cameraOffset);
+camera.lookAt(0, -5, 0);
